@@ -42,5 +42,16 @@ echo "export PROMPT_COMMAND='logger -p local0.debug "[USER]$(whoami) [IP]$IP [PI
 source "$BASHRC_PATH"
 
 
+# rsyslog 설정 파일 경로
+RSYSLOG_CONF="/etc/rsyslog.d/50-default.conf"
+
+# 추가할 로그 설정
+LOG_SETTING="local0.* /var/log/command.log"
+
+# 설정 파일에 로그 설정 추가
+echo "$LOG_SETTING" >> "$RSYSLOG_CONF"
+
+# rsyslog 서비스 재시작
+service rsyslog restart
 
 
